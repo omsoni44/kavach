@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>kavachservices</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="kavach.css">
+    <link rel="stylesheet" href="contactus.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="kavach.js"></script>
+    
+</head>
+<body>
+    <header>
+        <div class="head">
+            <div>
+                <img src="logo.png" alt="logo" style="padding: 5%;">
+            </div>
+            <div class="menubar">
+                <ul>
+                    <a href="index.html" class="home">HOME</a>
+                    <a href="aboutus.html">ABOUT US</a>
+                    <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">SERVICES</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="advisory.html">Advisory & Consulting</a><hr>
+                        <a href="cities.html">Smart & Safe Cities</a><hr>
+                        <a href="energy.html">Energy</a><hr>
+                        <a href="education.html">Education</a><hr>
+                        <a href="ict.html">ICT Infrastructure</a><hr>
+                        <a href="industry.html">Industry</a><hr>
+                        <a href="civil.html">Civil & Urban Infrastructure</a><hr>
+                        <a href="system.html">System Integration</a>
+                    </div>
+                    <a href="contactus.html">CONTACT US</a>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <hr><br>
+    <main>
+        <div style="margin: 0% 7%;">
+            <div>
+                <b style="font-size: xx-large;"><u>Contact Us</u></b><br><br>
+                <p style="font-size: large;">Get in touch with us by filling the form</p>
+            </div>
+            <div>
+            <hr style="height: 5px;background-color: black;"><br>
+            </div>
+            <div>
+                <div style="display: flex;">
+                    <input type="text" name="Fname" placeholder="*First Name" id="Fname" class="textfield" required>
+                    <input type="text" name="Lname" placeholder="*Last Name" id="Lname" class="textfield" required>
+                    <input type="email" name="E-MAIL" placeholder="*Email" id="EMAIL" class="textfield" required>
+                </div><br>
+                <div>
+                    <textarea name="Description" placeholder="*Enter your query here" rows="10" cols=100% id="description" class="textarea" required></textarea>
+                </div><br>
+            
+            </div>
+            <div>
+                <hr style="background: black;height: 5px;"><br>
+                <button value="Submit" id="submit" style="background-color: lightgreen; color: white; height: 40px; width: 400px; border-radius: 7px; margin-right: 20px;" onclick="handlebtn()">Submit</button>
+                <button Value="Reset" id="reset" style="background-color: red; color: white; height: 40px; width: 400px; border-radius: 7px;">Reset</button>
+             </div><br><br>
+            <div>
+                <b style="font-size: xx-large;"><u>Direction</u></b><br><br>
+                <p style="font-size: large;">Kavach Global Konnects Pvt Ltd</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.196608526762!2d72.51697371744383!3d23.053252500000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e8548c0dc0ac7%3A0xa0ee50a3ce97e719!2sKavach%20Global%20Konnects%20Pvt%20Ltd%20%7C%20Best%20Security%20Services!5e0!3m2!1sen!2sin!4v1690053292389!5m2!1sen!2sin" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            
+        </div>
+        <button id="scrollToTop" onclick="scrollToTop()">^</button>
+            <script>function checkScrollPosition() {
+                var scrollToTopButton = document.getElementById("scrollToTop");
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    scrollToTopButton.style.display = "block";
+                } else {
+                    scrollToTopButton.style.display = "none";
+                }
+            }
+        
+            // Function to scroll to the top when the button is clicked
+            function scrollToTop() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        
+            // Attach the scroll event listener
+            window.addEventListener("scroll", checkScrollPosition);</script>
+            <script>
+                function handlebtn () {
+                const details = {
+                    Fname : document.getElementById('Fname').value,
+                    Lname : document.getElementById('Lname').value,
+                    EMAIL : document.getElementById('EMAIL').value,
+                    description : document.getElementById('description').value,
+                }
+                fetch('https://kavachkonnectsservices-default-rtdb.firebaseio.com/Kavach.json', {
+                    method : 'post',
+                    body : JSON.stringify(details),
+                    mode: 'cors',
+                    headers: {
+                        'Access-Control-Allow-Origin':'*'
+                    }
+                }).then((result) => {
+                    console.log(result);
+                    document.getElementById('EMAIL').value = '';
+                    document.getElementById('Fname').value = '';
+                    document.getElementById('Lname').value = '';
+                    document.getElementById('description').value = '';
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            }
+            </script>
+    </main><br><br>
+
+    <footer style="justify-content: space-between;">
+        <div style="display: flex; justify-content: space-evenly;" class="bg-gray-400 bg-opacity-75">
+            
+                <div>
+                <li class="headlist"><b>Get in touch with us</b></li>
+                <h4 style="margin-left: 20px;"><b>KAVACH GLOBAL KONNECTS PVT LTD</b></h4>
+                    <ul class="headlist">
+                        <li>A/53, 5th floor, New York Tower<br>
+                            Thaltej, S G Highway<br>
+                            Ahmedabad - 380015</li>
+                        <li>+91 98981 44606</li>
+                        <li>info@kavachservices.com</li>
+                    </ul>
+                </div>
+                <div>
+                <li class="headlist"><b>Information</b></li>
+                    <ul class="headlist">
+                        <li>Press release</li>
+                        <li>Terms & Conditions</li>
+                        <li>Private Policy</li>
+                        <li>Carrer Center</li>
+                        <li>Contact Us</li>
+                    </ul>
+                </div>
+                <div>
+                <li class="headlist"><b>Pages</b></li>
+                    <ul class="headlist">
+                        <li>Press release</li>
+                        <li>Terms & Conditions</li>
+                        <li>Private Policy</li>
+                        <li>Carrer Center</li>
+                        <li>Contact Us</li>
+                    </ul>
+                </div>
+        </div>
+            <div class="bg-gray-400 bg-opacity-75">    
+                    <div class="container px-5 py-8 flex flex-wrap mx-auto items-center justify-center" >
+                      <div class="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-center">
+                        <div class="relative sm:w-64 w-40 sm:mr-4 mr-2">
+                          <label for="footer-field" class="leading-7 text-sm text-black"><b>NEWSLETTER</b></label>
+                          <pre class="text-gray-700 text-sm md:ml-0 md:mt-0 mt-0 text-left sm:text-left">Fill your email and sign up for monthly newsletter to keep update 
+                          </pre>
+                            <input type="text" id="footer-field" name="footer-field" class="w-full bg-white-800 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-green-900 focus:bg-transparent focus:border-green-500 text-base outline-none text-black-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        </div>
+                        <button class="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded" onclick="sub()">Subscribe</button>
+                      </div>
+                    </div>     
+            
+        </div>
+        <div class="bg-gray-400 bg-opacity-75 " style="display: flex;">
+            <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row" style="margin-left: 100px;">
+              <p class="text-gray-700 text-sm text-center sm:text-left">© Kavach Global Konnects Pvt Ltd 2022 All right reserved. 
+              </p>
+            </div>
+            <div style="margin-right: 100px; padding-top: 15px;" class="col-lg-6">
+                <ul style="display: flex;text-decoration: none ;">
+                <li style="margin-left: 10px;"> <a href="#" class="text-white-700" data-placement="top" title="Facebook" >
+                <i class="fa-brands fa-facebook-f" ></i></a></li>
+                <li style="margin-left: 10px;"><a href="#" class="text-white-700" data-placement="top" title="Twitter">
+                <i class="fa-brands fa-twitter"></i></a></li>
+                <li style="margin-left: 10px;"><a href="#" class="text-white-700" data-placement="top" title="Linked In">
+                <i class="fa-brands fa-linkedin-in"></i></a></li>
+                <li style="margin-left: 10px;"><a href="#" class="text-white-700" data-placement="top" title="Pintrest">
+                <i class="fa-brands fa-pinterest"></i></a></li>
+                <li style="margin-left: 10px;"><a href="#" class="text-white-700" data-placement="top" title="Google plus">
+                <i class="fa-brands fa-google-plus-g"></i></a></li></ul>
+          </div>
+          </div>
+    </footer>
+</body>
+</html>
